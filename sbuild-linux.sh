@@ -7,8 +7,8 @@ if [ "$#" -eq 1 ]; then
     BUILD_TYPE=$1
 fi
 
-if [ $FFMPEG_MINIMAL = "" ]; then
-    FFMPEG_MINIMAL = OFF
+if [ ${FFMPEG_MINIMAL}_x = _x ]; then
+    FFMPEG_MINIMAL=OFF
 fi
 
 JOBS=4

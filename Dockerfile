@@ -23,17 +23,12 @@ RUN apt-get update && apt-get install -y build-essential \
 			      libpng++-dev \
 			      libimath-dev
 
-#			      python3-venv \
-#			      python3-pip
-
-ENV PATH=/home/ubuntu/toucan_python/bin:$PATH
+# Add the pipx installation location:
+ENV PATH=/root/.local/share/pipx/venvs/conan/bin:$PATH
 
 RUN pipx ensurepath
 RUN pipx install conan
-# RUN conan profile detect
-
-# RUN python3 -m venv /home/ubuntu/toucan_python
-# RUN /home/ubuntu/toucan_python/bin/pip install conan
+RUN conan profile detect
 
 # Compile and install feather-tk library
 RUN mkdir feather-tk
@@ -64,3 +59,10 @@ RUN cd openFX; git clone https://github.com/AcademySoftwareFoundation/openfx.git
 COPY . /home/ubuntu/toucan
 
 # RUN sh toucan/sbuild-linux.sh
+
+
+#			      python3-venv \
+#			      python3-pip
+# RUN python3 -m venv /home/ubuntu/toucan_python
+# RUN /home/ubuntu/toucan_python/bin/pip install conan
+
