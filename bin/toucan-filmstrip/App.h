@@ -35,8 +35,8 @@ namespace toucan
     private:
         struct CmdLine
         {
-            std::shared_ptr<ftk::CmdLineValueArg<std::string> > input;
-            std::shared_ptr<ftk::CmdLineValueArg<std::string> > output;
+            std::shared_ptr<ftk::CmdLineArg<std::string> > input;
+            std::shared_ptr<ftk::CmdLineArg<std::string> > output;
         };
         CmdLine _cmdLine;
 

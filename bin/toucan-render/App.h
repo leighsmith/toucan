@@ -45,17 +45,17 @@ namespace toucan
         
         struct CmdLine
         {
-            std::shared_ptr<ftk::CmdLineValueArg<std::string> > input;
-            std::shared_ptr<ftk::CmdLineValueArg<std::string> > output;
+            std::shared_ptr<ftk::CmdLineArg<std::string> > input;
+            std::shared_ptr<ftk::CmdLineArg<std::string> > output;
             bool outputRaw = false;
 
-            std::shared_ptr<ftk::CmdLineValueOption<std::string> > videoCodec;
+            std::shared_ptr<ftk::CmdLineOption<std::string> > videoCodec;
             std::shared_ptr<ftk::CmdLineFlagOption> printStart;
             std::shared_ptr<ftk::CmdLineFlagOption> printDuration;
             std::shared_ptr<ftk::CmdLineFlagOption> printRate;
             std::shared_ptr<ftk::CmdLineFlagOption> printSize;
-            std::shared_ptr<ftk::CmdLineValueOption<std::string> > raw;
-            std::shared_ptr<ftk::CmdLineValueOption<std::string> > y4m;
+            std::shared_ptr<ftk::CmdLineOption<std::string> > raw;
+            std::shared_ptr<ftk::CmdLineOption<std::string> > y4m;
             std::shared_ptr<ftk::CmdLineFlagOption> verbose;
         };
         CmdLine _cmdLine;
