@@ -31,10 +31,10 @@ namespace toucan
 
         _selectionModel = std::make_shared<SelectionModel>();
 
-        _currentImage = ftk::ObservableValue<std::shared_ptr<ftk::Image> >::create();
+        _currentImage = ftk::Observable<std::shared_ptr<ftk::Image> >::create();
 
-        _rootNode = ftk::ObservableValue<std::shared_ptr<IImageNode> >::create();
-        _currentNode = ftk::ObservableValue<std::shared_ptr<IImageNode> >::create();
+        _rootNode = ftk::Observable<std::shared_ptr<IImageNode> >::create();
+        _currentNode = ftk::Observable<std::shared_ptr<IImageNode> >::create();
 
         _graph = std::make_shared<ImageGraph>(
             context,
@@ -101,17 +101,17 @@ namespace toucan
         return _graph->getImageDataType();
     }
 
-    std::shared_ptr<ftk::IObservableValue<std::shared_ptr<ftk::Image> > > File::observeCurrentImage() const
+    std::shared_ptr<ftk::IObservable<std::shared_ptr<ftk::Image> > > File::observeCurrentImage() const
     {
         return _currentImage;
     }
 
-    std::shared_ptr<ftk::IObservableValue<std::shared_ptr<IImageNode> > > File::observeRootNode() const
+    std::shared_ptr<ftk::IObservable<std::shared_ptr<IImageNode> > > File::observeRootNode() const
     {
         return _rootNode;
     }
 
-    std::shared_ptr<ftk::IObservableValue<std::shared_ptr<IImageNode> > > File::observeCurrentNode() const
+    std::shared_ptr<ftk::IObservable<std::shared_ptr<IImageNode> > > File::observeCurrentNode() const
     {
         return _currentNode;
     }

@@ -35,10 +35,16 @@ RUN apt-get update && apt-get install -y build-essential \
 			      libopentimelineio-dev
 
 # TODO:
-# yaml-cpp
 
 # missing #include <ftk/Core/ObservableValue.h>
 
+
+# Clone, compile and install feather-tk library
+RUN mkdir feather-tk
+RUN cd feather-tk; git clone https://github.com/grizzlypeak3d/feather-tk.git
+RUN cd feather-tk; sh feather-tk/sbuild-linux.sh feather-tk
+# TODO replace with cmake --target install 
+RUN tar -C feather-tk/install-Release -c -f - . | tar -C /usr/local -x -f -
 
 
 # Add the pipx installation location:
@@ -49,19 +55,11 @@ RUN pipx ensurepath
 RUN pipx install conan
 RUN conan profile detect
 
-# Clone, compile and install feather-tk library
-RUN mkdir feather-tk
-RUN cd feather-tk; git clone https://github.com/grizzlypeak3d/feather-tk.git
-RUN cd feather-tk; sh feather-tk/sbuild-linux.sh feather-tk
-# TODO replace with cmake --target install 
-RUN tar -C feather-tk/install-Release -c -f - . | tar -C /usr/local -x -f -
-
 # TODO Unable to get it because of github blocking automation.
 # curl -O https://github.com/AcademySoftwareFoundation/openfx/releases/download/OFX_Release_1.5.1/openfx-linux-ubuntu-1.5.1.tar.gz
-RUN mkdir openFX
-RUN cd openFX; git clone https://github.com/AcademySoftwareFoundation/openfx.git
+RUN git clone https://github.com/AcademySoftwareFoundation/openfx.git
 # TODO this doesn't build on arm64 Linux currently, can't find the architecture.
-RUN cd openFX/openfx; scripts/build-cmake.sh
+RUN cd openfx; scripts/build-cmake.sh
 # TODO need to fully install this?
 
 # RUN git clone https://github.com/OpenTimelineIO/toucan.git
