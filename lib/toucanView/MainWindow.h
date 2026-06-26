@@ -50,7 +50,7 @@ namespace toucan
         void keyReleaseEvent(ftk::KeyEvent&) override;
 
     protected:
-        void _drop(const std::vector<std::string>&) override;
+        void _drop(const std::vector<std::string>&);
 
     private:
         std::weak_ptr<App> _app;

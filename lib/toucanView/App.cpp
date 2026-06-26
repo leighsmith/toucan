@@ -56,7 +56,7 @@ namespace toucan
             std::dynamic_pointer_cast<App>(shared_from_this()),
             "toucan-view",
             ftk::Size2I(1920, 1080));
-        addWindow(_window);
+        _addWindow(_window);
         _window->show();
 
         if (_input->hasValue())
