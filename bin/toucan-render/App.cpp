@@ -70,16 +70,16 @@ namespace toucan
             "",
             "MJPEG",
             ftk::join(ffmpeg::getVideoCodecStrings(), ", "));
-        _cmdLine.printStart = ftk::CmdLineFlagOption::create(
+        _cmdLine.printStart = ftk::CmdLineFlag::create(
             std::vector<std::string>{ "-print_start" },
             "Print the timeline start time and exit.");
-        _cmdLine.printDuration = ftk::CmdLineFlagOption::create(
+        _cmdLine.printDuration = ftk::CmdLineFlag::create(
             std::vector<std::string>{ "-print_duration" },
             "Print the timeline duration and exit.");
-        _cmdLine.printRate = ftk::CmdLineFlagOption::create(
+        _cmdLine.printRate = ftk::CmdLineFlag::create(
             std::vector<std::string>{ "-print_rate" },
             "Print the timeline frame rate and exit.");
-        _cmdLine.printSize = ftk::CmdLineFlagOption::create(
+        _cmdLine.printSize = ftk::CmdLineFlag::create(
             std::vector<std::string>{ "-print_size" },
             "Print the timeline image size.");
         _cmdLine.raw = ftk::CmdLineOption<std::string>::create(
@@ -94,7 +94,7 @@ namespace toucan
             "",
             std::optional<std::string>(),
             ftk::join(y4mList, ", "));
-        _cmdLine.verbose = ftk::CmdLineFlagOption::create(
+        _cmdLine.verbose = ftk::CmdLineFlag::create(
             std::vector<std::string>{ "-v" },
             "Print verbose output.");
 

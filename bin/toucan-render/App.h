@@ -50,13 +50,13 @@ namespace toucan
             bool outputRaw = false;
 
             std::shared_ptr<ftk::CmdLineOption<std::string> > videoCodec;
-            std::shared_ptr<ftk::CmdLineFlagOption> printStart;
-            std::shared_ptr<ftk::CmdLineFlagOption> printDuration;
-            std::shared_ptr<ftk::CmdLineFlagOption> printRate;
-            std::shared_ptr<ftk::CmdLineFlagOption> printSize;
+            std::shared_ptr<ftk::CmdLineFlag> printStart;
+            std::shared_ptr<ftk::CmdLineFlag> printDuration;
+            std::shared_ptr<ftk::CmdLineFlag> printRate;
+            std::shared_ptr<ftk::CmdLineFlag> printSize;
             std::shared_ptr<ftk::CmdLineOption<std::string> > raw;
             std::shared_ptr<ftk::CmdLineOption<std::string> > y4m;
-            std::shared_ptr<ftk::CmdLineFlagOption> verbose;
+            std::shared_ptr<ftk::CmdLineFlag> verbose;
         };
         CmdLine _cmdLine;
 
