@@ -5,7 +5,7 @@
 
 #include <ftk/UI/Menu.h>
 #include <ftk/Core/ObservableList.h>
-#include <ftk/Core/ObservableValue.h>
+#include <ftk/Core/Observable.h>
 
 #include <filesystem>
 #include <map>

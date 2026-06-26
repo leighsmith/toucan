@@ -36,8 +36,8 @@ RUN apt-get update && apt-get install -y build-essential \
 
 # TODO:
 
-# missing #include <ftk/Core/ObservableValue.h>
-
+# missing #include <ftk/Core/ObservableValue.h> replace with #include <ftk/Core/Observable.h>
+# Missing OpenFX/ofxProperty.h need to install OpenFX headers properly.
 
 # Clone, compile and install feather-tk library
 RUN mkdir feather-tk

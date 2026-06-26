@@ -5,7 +5,7 @@
 
 #include <ftk/UI/Settings.h>
 #include <ftk/Core/Context.h>
-#include <ftk/Core/ObservableValue.h>
+#include <ftk/Core/Observable.h>
 
 #include <opentimelineio/version.h>
 
@@ -46,13 +46,13 @@ namespace toucan
         TimeUnits getTimeUnits() const;
 
         //! Observe the time units.
-        std::shared_ptr<ftk::IObservableValue<TimeUnits> > observeTimeUnits() const;
+        std::shared_ptr<ftk::IObservable<TimeUnits> > observeTimeUnits() const;
 
         //! Set the time units.
         void setTimeUnits(TimeUnits);
 
     private:
         std::shared_ptr<ftk::Settings> _settings;
-        std::shared_ptr<ftk::ObservableValue<TimeUnits> > _timeUnits;
+        std::shared_ptr<ftk::Observable<TimeUnits> > _timeUnits;
     };
 }

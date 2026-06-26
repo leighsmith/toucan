@@ -97,7 +97,7 @@ namespace toucan
         catch (const std::exception&)
         {}
 
-        _timeUnits = ftk::ObservableValue<TimeUnits>::create(value);
+        _timeUnits = ftk::Observable<TimeUnits>::create(value);
     }
 
     TimeUnitsModel::~TimeUnitsModel()
@@ -114,7 +114,7 @@ namespace toucan
         return _timeUnits->get();
     }
 
-    std::shared_ptr<ftk::IObservableValue<TimeUnits> > TimeUnitsModel::observeTimeUnits() const
+    std::shared_ptr<ftk::IObservable<TimeUnits> > TimeUnitsModel::observeTimeUnits() const
     {
         return _timeUnits;
     }

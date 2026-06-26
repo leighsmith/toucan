@@ -28,7 +28,7 @@ namespace toucan
             0,
             static_cast<int>(ftk::KeyModifier::Alt));
 
-        _frameView = ftk::ObservableValue<bool>::create(true);
+        _frameView = ftk::Observable<bool>::create(true);
 
         _scrollWidget = ftk::ScrollWidget::create(context, ftk::ScrollType::Both, shared_from_this());
         _scrollWidget->setScrollEventsEnabled(false);
@@ -156,7 +156,7 @@ namespace toucan
         return _frameView->get();
     }
 
-    std::shared_ptr<ftk::IObservableValue<bool> > TimelineWidget::observeFrameView() const
+    std::shared_ptr<ftk::IObservable<bool> > TimelineWidget::observeFrameView() const
     {
         return _frameView;
     }

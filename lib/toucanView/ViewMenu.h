@@ -6,7 +6,7 @@
 #include <toucanView/ViewModel.h>
 
 #include <ftk/UI/Menu.h>
-#include <ftk/Core/ObservableValue.h>
+#include <ftk/Core/Observable.h>
 
 namespace toucan
 {

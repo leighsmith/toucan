@@ -26,9 +26,9 @@ namespace toucan
         _viewModel = file->getViewModel();
         _imageSize.w = file->getImageSize().x;
         _imageSize.h = file->getImageSize().y;
-        _viewPos = ftk::ObservableValue<ftk::V2I>::create();
-        _viewZoom = ftk::ObservableValue<float>::create(1.F);
-        _frameView = ftk::ObservableValue<bool>::create(true);
+        _viewPos = ftk::Observable<ftk::V2I>::create();
+        _viewZoom = ftk::Observable<float>::create(1.F);
+        _frameView = ftk::Observable<bool>::create(true);
 
         _imageObserver = ftk::ValueObserver<std::shared_ptr<ftk::Image> >::create(
             file->observeCurrentImage(),
@@ -150,12 +150,12 @@ namespace toucan
         return _viewZoom->get();
     }
 
-    std::shared_ptr<ftk::IObservableValue<ftk::V2I> > Viewport::observeViewPos() const
+    std::shared_ptr<ftk::IObservable<ftk::V2I> > Viewport::observeViewPos() const
     {
         return _viewPos;
     }
 
-    std::shared_ptr<ftk::IObservableValue<float> > Viewport::observeViewZoom() const
+    std::shared_ptr<ftk::IObservable<float> > Viewport::observeViewZoom() const
     {
         return _viewZoom;
     }
@@ -207,7 +207,7 @@ namespace toucan
         return _frameView->get();
     }
 
-    std::shared_ptr<ftk::IObservableValue<bool> > Viewport::observeFrameView() const
+    std::shared_ptr<ftk::IObservable<bool> > Viewport::observeFrameView() const
     {
         return _frameView;
     }

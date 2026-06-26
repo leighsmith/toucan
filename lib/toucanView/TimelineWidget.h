@@ -47,7 +47,7 @@ namespace toucan
         bool hasFrameView() const;
 
         //! Observe whether frame view is enabled.
-        std::shared_ptr<ftk::IObservableValue<bool> > observeFrameView() const;
+        std::shared_ptr<ftk::IObservable<bool> > observeFrameView() const;
 
         //! Set whether frame view is enabled.
         void setFrameView(bool);
@@ -81,7 +81,7 @@ namespace toucan
         OTIO_NS::RationalTime _currentTime;
         OTIO_NS::TimeRange _inOutRange;
         double _scale = 100.0;
-        std::shared_ptr<ftk::ObservableValue<bool> > _frameView;
+        std::shared_ptr<ftk::Observable<bool> > _frameView;
         bool _sizeInit = true;
         std::optional<TimelineViewState> _viewState;
         std::shared_ptr<ThumbnailGenerator> _thumbnailGenerator;
