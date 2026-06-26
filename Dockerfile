@@ -22,10 +22,19 @@ RUN apt-get update && apt-get install -y build-essential \
 			      libpng++-dev \
 			      libimath-dev \
 			      ffmpeg \
+			      libavcodec-dev \
+			      libavformat-dev \
+			      libswscale-dev \
+			      openimageio-tools \
 			      libopenexr-dev \
 			      libopenimageio-dev \
 			      libopencolorio-dev \
 			      libopentimelineio-dev
+
+# TODO:
+# yaml-cpp
+# opencv4
+
 
 # Add the pipx installation location:
 ENV PATH=/root/.local/share/pipx/venvs/conan/bin:$PATH
@@ -48,6 +57,7 @@ RUN mkdir openFX
 RUN cd openFX; git clone https://github.com/AcademySoftwareFoundation/openfx.git
 # TODO this doesn't build on arm64 Linux currently, can't find the architecture.
 RUN cd openFX/openfx; scripts/build-cmake.sh
+# TODO need to fully install this?
 
 # RUN git clone https://github.com/OpenTimelineIO/toucan.git
 # RUN git clone https://github.com/leighsmith/toucan.git
