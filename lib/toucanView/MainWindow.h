@@ -74,11 +74,11 @@ namespace toucan
         std::shared_ptr<InfoBar> _infoBar;
 
         std::shared_ptr<ftk::ListObserver<std::shared_ptr<File> > > _filesObserver;
-        std::shared_ptr<ftk::ValueObserver<int> > _addObserver;
-        std::shared_ptr<ftk::ValueObserver<int> > _removeObserver;
-        std::shared_ptr<ftk::ValueObserver<int> > _fileObserver;
+        std::shared_ptr<ftk::Observer<int> > _addObserver;
+        std::shared_ptr<ftk::Observer<int> > _removeObserver;
+        std::shared_ptr<ftk::Observer<int> > _fileObserver;
         std::shared_ptr<ftk::MapObserver<WindowComponent, bool> > _componentsObserver;
-        std::shared_ptr<ftk::ValueObserver<bool> > _tooltipsObserver;
+        std::shared_ptr<ftk::Observer<bool> > _tooltipsObserver;
     };
 }
 

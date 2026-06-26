@@ -136,7 +136,7 @@ namespace toucan
         std::shared_ptr<ftk::Observable<CompareOptions> > _compareOptions;
         std::shared_ptr<ftk::RecentFilesModel> _recentFilesModel;
 
-        std::shared_ptr<ftk::ValueObserver<OTIO_NS::RationalTime> > _currentTimeObserver;
+        std::shared_ptr<ftk::Observer<OTIO_NS::RationalTime> > _currentTimeObserver;
     };
 }
 

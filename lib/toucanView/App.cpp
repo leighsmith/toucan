@@ -26,7 +26,7 @@ namespace toucan
         const std::shared_ptr<ftk::Context>& context,
         std::vector<std::string>& argv)
     {
-        _input = ftk::CmdLineValueArg<std::string>::create(
+        _input = ftk::CmdLineArg<std::string>::create(
             "input",
             "Input timeline.",
             true);

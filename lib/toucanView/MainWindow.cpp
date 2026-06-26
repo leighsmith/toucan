@@ -143,7 +143,7 @@ namespace toucan
                 _files = files;
             });
 
-        _addObserver = ftk::ValueObserver<int>::create(
+        _addObserver = ftk::Observer<int>::create(
             app->getFilesModel()->observeAdd(),
             [this, appWeak](int index)
             {
@@ -161,7 +161,7 @@ namespace toucan
                 }
             });
 
-        _removeObserver = ftk::ValueObserver<int>::create(
+        _removeObserver = ftk::Observer<int>::create(
             app->getFilesModel()->observeRemove(),
             [this, appWeak](int index)
             {
@@ -177,7 +177,7 @@ namespace toucan
                 }
             });
 
-        _fileObserver = ftk::ValueObserver<int>::create(
+        _fileObserver = ftk::Observer<int>::create(
             app->getFilesModel()->observeCurrentIndex(),
             [this](int index)
             {
@@ -203,7 +203,7 @@ namespace toucan
                 _infoBar->setVisible(i->second);
             });
 
-        _tooltipsObserver = ftk::ValueObserver<bool>::create(
+        _tooltipsObserver = ftk::Observer<bool>::create(
             app->getWindowModel()->observeTooltips(),
             [this](bool value)
             {

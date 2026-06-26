@@ -86,6 +86,6 @@ namespace toucan
         std::shared_ptr<ftk::Observable<std::shared_ptr<IImageNode> > > _currentNode;
         OIIO::ImageBuf _imageBuf;
 
-        std::shared_ptr<ftk::ValueObserver<OTIO_NS::RationalTime> > _currentTimeObserver;
+        std::shared_ptr<ftk::Observer<OTIO_NS::RationalTime> > _currentTimeObserver;
     };
 }
