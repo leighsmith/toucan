@@ -45,8 +45,8 @@ namespace toucan
         std::shared_ptr<ftk::HorizontalLayout> _layout;
         std::map<std::string, std::shared_ptr<ftk::ToolButton> > _buttons;
 
-        std::shared_ptr<ftk::ValueObserver<bool> > _frameViewObserver;
-        std::shared_ptr<ftk::ValueObserver<bool> > _fullScreenObserver;
+        std::shared_ptr<ftk::Observer<bool> > _frameViewObserver;
+        std::shared_ptr<ftk::Observer<bool> > _fullScreenObserver;
         std::shared_ptr<ftk::MapObserver<WindowComponent, bool> > _componentObserver;
     };
 }

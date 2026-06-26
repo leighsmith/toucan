@@ -193,7 +193,7 @@ namespace toucan
             });
         addAction(_actions["Window/Tooltips"]);
 
-        _fullScreenObserver = ftk::ValueObserver<bool>::create(
+        _fullScreenObserver = ftk::Observer<bool>::create(
             window->observeFullScreen(),
             [this](bool value)
             {
@@ -214,7 +214,7 @@ namespace toucan
                 setChecked(_actions["Window/InfoBar"], i->second);
             });
 
-        _displayScaleObserver = ftk::ValueObserver<float>::create(
+        _displayScaleObserver = ftk::Observer<float>::create(
             window->observeDisplayScale(),
             [this](float value)
             {
@@ -225,14 +225,14 @@ namespace toucan
                 _menus["Window/DisplayScale"]->setChecked(_actions["Window/DisplayScale/3.0"], 3.F == value);
             });
 
-        _thumbnailsObserver = ftk::ValueObserver<bool>::create(
+        _thumbnailsObserver = ftk::Observer<bool>::create(
             app->getWindowModel()->observeThumbnails(),
             [this](bool value)
             {
                 setChecked(_actions["Window/Thumbnails"], value);
             });
 
-        _tooltipsObserver = ftk::ValueObserver<bool>::create(
+        _tooltipsObserver = ftk::Observer<bool>::create(
             app->getWindowModel()->observeTooltips(),
             [this](bool value)
             {

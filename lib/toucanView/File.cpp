@@ -41,7 +41,7 @@ namespace toucan
             path.parent_path(),
             _timelineWrapper);
 
-        _currentTimeObserver = ftk::ValueObserver<OTIO_NS::RationalTime>::create(
+        _currentTimeObserver = ftk::Observer<OTIO_NS::RationalTime>::create(
             _playbackModel->observeCurrentTime(),
             [this](const OTIO_NS::RationalTime& value)
             {

@@ -52,7 +52,7 @@ namespace toucan
         std::shared_ptr<ftk::ColorWidget> _checkersColor1Widget;
         std::shared_ptr<ftk::IntEditSlider> _checkersSizeSlider;
 
-        std::shared_ptr<ftk::ValueObserver<GlobalViewOptions> > _optionsObserver;
+        std::shared_ptr<ftk::Observer<GlobalViewOptions> > _optionsObserver;
     };
 }
 

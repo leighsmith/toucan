@@ -270,21 +270,21 @@ namespace toucan
             });
         addAction(_actions["Time/InOutPointSelection"]);
 
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeCurrent(),
             [this](const std::shared_ptr<File>& file)
             {
                 _file = file;
                 if (_file)
                 {
-                    _timeRangeObserver = ftk::ValueObserver<OTIO_NS::TimeRange>::create(
+                    _timeRangeObserver = ftk::Observer<OTIO_NS::TimeRange>::create(
                         _file->getPlaybackModel()->observeTimeRange(),
                         [this](const OTIO_NS::TimeRange& value)
                         {
                             _timeRange = value;
                             _menuUpdate();
                         });
-                    _inOutRangeObserver = ftk::ValueObserver<OTIO_NS::TimeRange>::create(
+                    _inOutRangeObserver = ftk::Observer<OTIO_NS::TimeRange>::create(
                         _file->getPlaybackModel()->observeInOutRange(),
                         [this](const OTIO_NS::TimeRange& value)
                         {

@@ -22,7 +22,7 @@ namespace toucan
 
         _hudWidget = HUDWidget::create(context, app, file, shared_from_this());
 
-        _viewOptionsObserver = ftk::ValueObserver<GlobalViewOptions>::create(
+        _viewOptionsObserver = ftk::Observer<GlobalViewOptions>::create(
             app->getGlobalViewModel()->observeOptions(),
             [this](const GlobalViewOptions& value)
             {

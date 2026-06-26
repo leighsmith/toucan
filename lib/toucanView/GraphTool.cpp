@@ -36,14 +36,14 @@ namespace toucan
                 }
             });
 
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeCurrent(),
             [this](const std::shared_ptr<File>& file)
             {
                 _file = file;
                 if (file)
                 {
-                    _rootNodeObserver = ftk::ValueObserver<std::shared_ptr<IImageNode> >::create(
+                    _rootNodeObserver = ftk::Observer<std::shared_ptr<IImageNode> >::create(
                         file->observeRootNode(),
                         [this](const std::shared_ptr<IImageNode>& node)
                         {
@@ -52,7 +52,7 @@ namespace toucan
                             _graphUpdate();
                         });
 
-                    _currentNodeObserver = ftk::ValueObserver<std::shared_ptr<IImageNode> >::create(
+                    _currentNodeObserver = ftk::Observer<std::shared_ptr<IImageNode> >::create(
                         file->observeCurrentNode(),
                         [this](const std::shared_ptr<IImageNode>& node)
                         {

@@ -54,11 +54,11 @@ namespace toucan
         std::shared_ptr<TimeLabel> _durationLabel;
         std::shared_ptr<ftk::ComboBox> _timeUnitsComboBox;
 
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<File> > > _fileObserver;
-        std::shared_ptr<ftk::ValueObserver<OTIO_NS::TimeRange> > _timeRangeObserver;
-        std::shared_ptr<ftk::ValueObserver<OTIO_NS::RationalTime> > _currentTimeObserver;
-        std::shared_ptr<ftk::ValueObserver<Playback> > _playbackObserver;
-        std::shared_ptr<ftk::ValueObserver<TimeUnits> > _timeUnitsObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<File> > > _fileObserver;
+        std::shared_ptr<ftk::Observer<OTIO_NS::TimeRange> > _timeRangeObserver;
+        std::shared_ptr<ftk::Observer<OTIO_NS::RationalTime> > _currentTimeObserver;
+        std::shared_ptr<ftk::Observer<Playback> > _playbackObserver;
+        std::shared_ptr<ftk::Observer<TimeUnits> > _timeUnitsObserver;
     };
 }
 

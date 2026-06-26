@@ -40,7 +40,7 @@ namespace toucan
     private:
         std::shared_ptr<Viewport> _viewport;
         std::shared_ptr<HUDWidget> _hudWidget;
-        std::shared_ptr<ftk::ValueObserver<GlobalViewOptions> > _viewOptionsObserver;
+        std::shared_ptr<ftk::Observer<GlobalViewOptions> > _viewOptionsObserver;
     };
 }
 

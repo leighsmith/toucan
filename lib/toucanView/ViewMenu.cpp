@@ -190,7 +190,7 @@ namespace toucan
         _actions["View/HUD"]->setTooltip("Toggle the HUD (Heads Up Display)");
         addAction(_actions["View/HUD"]);
 
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeCurrent(),
             [this](const std::shared_ptr<File>& file)
             {
@@ -198,7 +198,7 @@ namespace toucan
                 _menuUpdate();
             });
 
-        _globalOptionsObserver = ftk::ValueObserver<GlobalViewOptions>::create(
+        _globalOptionsObserver = ftk::Observer<GlobalViewOptions>::create(
             app->getGlobalViewModel()->observeOptions(),
             [this](const GlobalViewOptions& value)
             {
@@ -229,14 +229,14 @@ namespace toucan
         const bool file = _file.get();
         if (file)
         {
-            _frameViewObserver = ftk::ValueObserver<bool>::create(
+            _frameViewObserver = ftk::Observer<bool>::create(
                 _file->getViewModel()->observeFrameView(),
                 [this](bool value)
                 {
                     setChecked(_actions["View/Frame"], value);
                 });
 
-            _optionsObserver = ftk::ValueObserver<ViewOptions>::create(
+            _optionsObserver = ftk::Observer<ViewOptions>::create(
                 _file->getViewModel()->observeOptions(),
                 [this](const ViewOptions& value)
                 {

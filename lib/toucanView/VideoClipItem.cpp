@@ -88,7 +88,7 @@ namespace toucan
 
         _textUpdate();
 
-        _thumbnailsObserver = ftk::ValueObserver<bool>::create(
+        _thumbnailsObserver = ftk::Observer<bool>::create(
             data.app->getWindowModel()->observeThumbnails(),
             [this](bool value)
             {

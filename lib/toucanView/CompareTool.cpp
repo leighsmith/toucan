@@ -164,7 +164,7 @@ namespace toucan
                 _indexUpdate();
             });
 
-        _fileIndexObserver = ftk::ValueObserver<int>::create(
+        _fileIndexObserver = ftk::Observer<int>::create(
             _filesModel->observeCurrentIndex(),
             [this](int value)
             {
@@ -172,7 +172,7 @@ namespace toucan
                 _indexUpdate();
             });
 
-        _bIndexObserver = ftk::ValueObserver<int>::create(
+        _bIndexObserver = ftk::Observer<int>::create(
             _filesModel->observeBIndex(),
             [this](int value)
             {
@@ -180,7 +180,7 @@ namespace toucan
                 _indexUpdate();
             });
         
-        _compareOptionsObserver = ftk::ValueObserver<CompareOptions>::create(
+        _compareOptionsObserver = ftk::Observer<CompareOptions>::create(
             _filesModel->observeCompareOptions(),
             [this](const CompareOptions& value)
             {

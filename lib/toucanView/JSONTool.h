@@ -92,7 +92,7 @@ namespace toucan
         std::shared_ptr<ftk::ToolButton> _openButton;
         std::shared_ptr<ftk::ToolButton> _closeButton;
 
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<File> > > _fileObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<File> > > _fileObserver;
         std::shared_ptr<ftk::ListObserver<SelectionItem> > _selectionObserver;
     };
 }

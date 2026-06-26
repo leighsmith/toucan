@@ -74,7 +74,7 @@ namespace toucan
         std::shared_ptr<ftk::ToolButton> _inOutButton;
         std::vector<std::pair<std::shared_ptr<ftk::Label>, std::shared_ptr<ftk::Label> > > _labels;
 
-        std::shared_ptr<ftk::ValueObserver<TimeUnits> > _timeUnitsObserver;
+        std::shared_ptr<ftk::Observer<TimeUnits> > _timeUnitsObserver;
     };
 
     //! Details tool.
@@ -108,7 +108,7 @@ namespace toucan
         std::shared_ptr<ftk::ToolButton> _openButton;
         std::shared_ptr<ftk::ToolButton> _closeButton;
 
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<File> > > _fileObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<File> > > _fileObserver;
         std::shared_ptr<ftk::ListObserver<SelectionItem> > _selectionObserver;
     };
 }

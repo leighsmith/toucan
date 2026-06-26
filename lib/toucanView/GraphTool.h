@@ -74,9 +74,9 @@ namespace toucan
         };
         SizeData _size;
 
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<File> > > _fileObserver;
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<IImageNode> > > _rootNodeObserver;
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<IImageNode> > > _currentNodeObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<File> > > _fileObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<IImageNode> > > _rootNodeObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<IImageNode> > > _currentNodeObserver;
     };
 
     //! Image graph tool.

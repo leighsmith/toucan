@@ -100,16 +100,16 @@ namespace toucan
         GlobalViewOptions _globalOptions;
         ftk::V2I _viewMousePress;
 
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<ftk::Image> > > _imageObserver;
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<File> > > _bObserver;
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<ftk::Image> > > _bImageObserver;
-        std::shared_ptr<ftk::ValueObserver<CompareOptions> > _compareOptionsObserver;
-        std::shared_ptr<ftk::ValueObserver<bool> > _zoomInObserver;
-        std::shared_ptr<ftk::ValueObserver<bool> > _zoomOutObserver;
-        std::shared_ptr<ftk::ValueObserver<bool> > _zoomResetObserver;
-        std::shared_ptr<ftk::ValueObserver<bool> > _frameObserver;
-        std::shared_ptr<ftk::ValueObserver<ViewOptions> > _optionsObserver;
-        std::shared_ptr<ftk::ValueObserver<GlobalViewOptions> > _globalOptionsObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<ftk::Image> > > _imageObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<File> > > _bObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<ftk::Image> > > _bImageObserver;
+        std::shared_ptr<ftk::Observer<CompareOptions> > _compareOptionsObserver;
+        std::shared_ptr<ftk::Observer<bool> > _zoomInObserver;
+        std::shared_ptr<ftk::Observer<bool> > _zoomOutObserver;
+        std::shared_ptr<ftk::Observer<bool> > _zoomResetObserver;
+        std::shared_ptr<ftk::Observer<bool> > _frameObserver;
+        std::shared_ptr<ftk::Observer<ViewOptions> > _optionsObserver;
+        std::shared_ptr<ftk::Observer<GlobalViewOptions> > _globalOptionsObserver;
     };
 }
 

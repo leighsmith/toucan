@@ -49,7 +49,7 @@ namespace toucan
                 _widgetUpdate();
             });
 
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeCurrent(),
             [this](const std::shared_ptr<File>& file)
             {
@@ -93,7 +93,7 @@ namespace toucan
 
         if (_file)
         {
-            _frameViewObserver = ftk::ValueObserver<bool>::create(
+            _frameViewObserver = ftk::Observer<bool>::create(
                 _file->getViewModel()->observeFrameView(),
                 [this](bool value)
                 {

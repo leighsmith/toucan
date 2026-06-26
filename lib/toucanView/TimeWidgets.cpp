@@ -209,7 +209,7 @@ namespace toucan
                 _timeDec();
             });
 
-        _timeUnitsObserver = ftk::ValueObserver<TimeUnits>::create(
+        _timeUnitsObserver = ftk::Observer<TimeUnits>::create(
             timeUnitsModel->observeTimeUnits(),
             [this](TimeUnits value)
             {
@@ -343,7 +343,7 @@ namespace toucan
 
         _timeUpdate();
 
-        _timeUnitsObserver = ftk::ValueObserver<TimeUnits>::create(
+        _timeUnitsObserver = ftk::Observer<TimeUnits>::create(
             timeUnitsModel->observeTimeUnits(),
             [this](TimeUnits value)
             {

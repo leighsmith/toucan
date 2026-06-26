@@ -35,7 +35,7 @@ namespace toucan
         _scrollWidget->setBorder(false);
 
         auto appWeak = std::weak_ptr<App>(app);
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeCurrent(),
             [this, appWeak](const std::shared_ptr<File>& file)
             {
@@ -87,7 +87,7 @@ namespace toucan
                         });
                     _scrollWidget->setWidget(_timelineItem);
 
-                    _currentTimeObserver = ftk::ValueObserver<OTIO_NS::RationalTime>::create(
+                    _currentTimeObserver = ftk::Observer<OTIO_NS::RationalTime>::create(
                         file->getPlaybackModel()->observeCurrentTime(),
                         [this](const OTIO_NS::RationalTime& value)
                         {
@@ -99,7 +99,7 @@ namespace toucan
                             _scrollUpdate();
                         });
 
-                    _inOutRangeObserver = ftk::ValueObserver<OTIO_NS::TimeRange>::create(
+                    _inOutRangeObserver = ftk::Observer<OTIO_NS::TimeRange>::create(
                         file->getPlaybackModel()->observeInOutRange(),
                         [this](const OTIO_NS::TimeRange& value)
                         {

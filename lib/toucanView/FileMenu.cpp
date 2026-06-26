@@ -146,7 +146,7 @@ namespace toucan
                 }
             });
 
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             _filesModel->observeCurrent(),
             [this](const std::shared_ptr<File>& file)
             {
@@ -154,7 +154,7 @@ namespace toucan
                 _menuUpdate();
             });
 
-        _fileIndexObserver = ftk::ValueObserver<int>::create(
+        _fileIndexObserver = ftk::Observer<int>::create(
             _filesModel->observeCurrentIndex(),
             [this](int index)
             {

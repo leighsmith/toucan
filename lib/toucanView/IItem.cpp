@@ -23,7 +23,7 @@ namespace toucan
         _file = data.file;
         _object = object;
 
-        _timeUnitsObserver = ftk::ValueObserver<TimeUnits>::create(
+        _timeUnitsObserver = ftk::Observer<TimeUnits>::create(
             data.app->getTimeUnitsModel()->observeTimeUnits(),
             [this](TimeUnits value)
             {

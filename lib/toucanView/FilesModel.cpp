@@ -361,7 +361,7 @@ namespace toucan
     {
         if (auto file = _current->get())
         {
-            _currentTimeObserver = ftk::ValueObserver<OTIO_NS::RationalTime>::create(
+            _currentTimeObserver = ftk::Observer<OTIO_NS::RationalTime>::create(
                 file->getPlaybackModel()->observeCurrentTime(),
                 [this](const OTIO_NS::RationalTime& value)
                 {

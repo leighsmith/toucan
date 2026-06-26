@@ -66,7 +66,7 @@ namespace toucan
         _labels["Time"]->setMarginRole(ftk::SizeRole::MarginInside);
         _labels["Time"]->setBackgroundRole(ftk::ColorRole::Overlay);
 
-        _currentTimeObserver = ftk::ValueObserver<OTIO_NS::RationalTime>::create(
+        _currentTimeObserver = ftk::Observer<OTIO_NS::RationalTime>::create(
             file->getPlaybackModel()->observeCurrentTime(),
             [this](const OTIO_NS::RationalTime& value)
             {
@@ -74,7 +74,7 @@ namespace toucan
                 _widgetUpdate();
             });
 
-        _timeRangeObserver = ftk::ValueObserver<OTIO_NS::TimeRange>::create(
+        _timeRangeObserver = ftk::Observer<OTIO_NS::TimeRange>::create(
             file->getPlaybackModel()->observeTimeRange(),
             [this](const OTIO_NS::TimeRange& value)
             {

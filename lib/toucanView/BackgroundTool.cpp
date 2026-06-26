@@ -97,7 +97,7 @@ namespace toucan
                 }
             });
 
-        _optionsObserver = ftk::ValueObserver<GlobalViewOptions>::create(
+        _optionsObserver = ftk::Observer<GlobalViewOptions>::create(
             _model->observeOptions(),
             [this](const GlobalViewOptions& value)
             {

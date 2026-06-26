@@ -30,7 +30,7 @@ namespace toucan
         _viewZoom = ftk::Observable<float>::create(1.F);
         _frameView = ftk::Observable<bool>::create(true);
 
-        _imageObserver = ftk::ValueObserver<std::shared_ptr<ftk::Image> >::create(
+        _imageObserver = ftk::Observer<std::shared_ptr<ftk::Image> >::create(
             file->observeCurrentImage(),
             [this](const std::shared_ptr<ftk::Image>& value)
             {
@@ -38,7 +38,7 @@ namespace toucan
                 setDrawUpdate();
             });
 
-        _bObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _bObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeBFile(),
             [this](const std::shared_ptr<File>& value)
             {
@@ -47,7 +47,7 @@ namespace toucan
                     const auto& imageSize = value->getImageSize();
                     _bImageSize.w = imageSize.x;
                     _bImageSize.h = imageSize.y;
-                    _bImageObserver = ftk::ValueObserver<std::shared_ptr<ftk::Image> >::create(
+                    _bImageObserver = ftk::Observer<std::shared_ptr<ftk::Image> >::create(
                         value->observeCurrentImage(),
                         [this](const std::shared_ptr<ftk::Image>& value)
                         {
@@ -64,7 +64,7 @@ namespace toucan
                 }
             });
 
-        _compareOptionsObserver = ftk::ValueObserver<CompareOptions>::create(
+        _compareOptionsObserver = ftk::Observer<CompareOptions>::create(
             app->getFilesModel()->observeCompareOptions(),
             [this](const CompareOptions& value)
             {
@@ -72,7 +72,7 @@ namespace toucan
                 setDrawUpdate();
             });
 
-        _zoomInObserver = ftk::ValueObserver<bool>::create(
+        _zoomInObserver = ftk::Observer<bool>::create(
             _viewModel->observeZoomIn(),
             [this](bool value)
             {
@@ -82,7 +82,7 @@ namespace toucan
                 }
             });
 
-        _zoomOutObserver = ftk::ValueObserver<bool>::create(
+        _zoomOutObserver = ftk::Observer<bool>::create(
             _viewModel->observeZoomOut(),
             [this](bool value)
             {
@@ -92,7 +92,7 @@ namespace toucan
                 }
             });
 
-        _zoomResetObserver = ftk::ValueObserver<bool>::create(
+        _zoomResetObserver = ftk::Observer<bool>::create(
             _viewModel->observeZoomReset(),
             [this](bool value)
             {
@@ -102,14 +102,14 @@ namespace toucan
                 }
             });
 
-        _frameObserver = ftk::ValueObserver<bool>::create(
+        _frameObserver = ftk::Observer<bool>::create(
             _viewModel->observeFrameView(),
             [this](bool value)
             {
                 setFrameView(value);
             });
 
-        _optionsObserver = ftk::ValueObserver<ViewOptions>::create(
+        _optionsObserver = ftk::Observer<ViewOptions>::create(
             _viewModel->observeOptions(),
             [this](const ViewOptions& value)
             {
@@ -117,7 +117,7 @@ namespace toucan
                 setDrawUpdate();
             });
 
-        _globalOptionsObserver = ftk::ValueObserver<GlobalViewOptions>::create(
+        _globalOptionsObserver = ftk::Observer<GlobalViewOptions>::create(
             app->getGlobalViewModel()->observeOptions(),
             [this](const GlobalViewOptions& value)
             {

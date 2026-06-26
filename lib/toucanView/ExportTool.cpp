@@ -46,7 +46,7 @@ namespace toucan
         _timer = ftk::Timer::create(context);
         _timer->setRepeating(true);
 
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeCurrent(),
             [this](const std::shared_ptr<File>& file)
             {

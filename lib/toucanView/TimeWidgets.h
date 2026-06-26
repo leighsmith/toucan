@@ -124,7 +124,7 @@ namespace toucan
         std::shared_ptr<ftk::IncButtons> _incButtons;
         std::function<void(const OTIO_NS::RationalTime&)> _callback;
 
-        std::shared_ptr<ftk::ValueObserver<TimeUnits> > _timeUnitsObserver;
+        std::shared_ptr<ftk::Observer<TimeUnits> > _timeUnitsObserver;
     };
 
     //! Time label.
@@ -162,7 +162,7 @@ namespace toucan
 
         std::shared_ptr<ftk::Label> _label;
 
-        std::shared_ptr<ftk::ValueObserver<TimeUnits> > _timeUnitsObserver;
+        std::shared_ptr<ftk::Observer<TimeUnits> > _timeUnitsObserver;
     };
 }
 

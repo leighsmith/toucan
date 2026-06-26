@@ -94,9 +94,9 @@ namespace toucan
         std::shared_ptr<ftk::CheckBox> _resizeCheckBox;
 
         std::shared_ptr<ftk::ListObserver<std::shared_ptr<File> > > _filesObserver;
-        std::shared_ptr<ftk::ValueObserver<int> > _fileIndexObserver;
-        std::shared_ptr<ftk::ValueObserver<int> > _bIndexObserver;
-        std::shared_ptr<ftk::ValueObserver<CompareOptions> > _compareOptionsObserver;
+        std::shared_ptr<ftk::Observer<int> > _fileIndexObserver;
+        std::shared_ptr<ftk::Observer<int> > _bIndexObserver;
+        std::shared_ptr<ftk::Observer<CompareOptions> > _compareOptionsObserver;
     };
 }
 

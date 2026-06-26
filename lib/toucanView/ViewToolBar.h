@@ -46,8 +46,8 @@ namespace toucan
         std::map<std::string, std::shared_ptr<ftk::ToolButton> > _buttons;
 
         std::shared_ptr<ftk::ListObserver<std::shared_ptr<File> > > _filesObserver;
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<File> > > _fileObserver;
-        std::shared_ptr<ftk::ValueObserver<bool> > _frameViewObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<File> > > _fileObserver;
+        std::shared_ptr<ftk::Observer<bool> > _frameViewObserver;
     };
 }
 

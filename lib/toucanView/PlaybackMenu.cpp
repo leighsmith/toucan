@@ -74,7 +74,7 @@ namespace toucan
             });
         addAction(_actions["Playback/Toggle"]);
 
-        _fileObserver = ftk::ValueObserver<std::shared_ptr<File> >::create(
+        _fileObserver = ftk::Observer<std::shared_ptr<File> >::create(
             app->getFilesModel()->observeCurrent(),
             [this](const std::shared_ptr<File>& file)
             {
@@ -106,7 +106,7 @@ namespace toucan
         const bool file = _file.get();
         if (file)
         {
-            _playbackObserver = ftk::ValueObserver<Playback>::create(
+            _playbackObserver = ftk::Observer<Playback>::create(
                 _file->getPlaybackModel()->observePlayback(),
                 [this](Playback value)
                 {

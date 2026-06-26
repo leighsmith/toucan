@@ -57,7 +57,7 @@ namespace toucan
         std::vector<std::shared_ptr<MarkerItem> > _markerItems;
         std::shared_ptr<TimeStackLayout> _timeLayout;
 
-        std::shared_ptr<ftk::ValueObserver<bool> > _thumbnailsObserver;
+        std::shared_ptr<ftk::Observer<bool> > _thumbnailsObserver;
 
         struct SizeData
         {

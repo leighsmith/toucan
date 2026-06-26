@@ -102,8 +102,8 @@ namespace toucan
         };
         MouseData _mouse;
 
-        std::shared_ptr<ftk::ValueObserver<std::shared_ptr<File> > > _fileObserver;
-        std::shared_ptr<ftk::ValueObserver<OTIO_NS::RationalTime> > _currentTimeObserver;
-        std::shared_ptr<ftk::ValueObserver<OTIO_NS::TimeRange> > _inOutRangeObserver;
+        std::shared_ptr<ftk::Observer<std::shared_ptr<File> > > _fileObserver;
+        std::shared_ptr<ftk::Observer<OTIO_NS::RationalTime> > _currentTimeObserver;
+        std::shared_ptr<ftk::Observer<OTIO_NS::TimeRange> > _inOutRangeObserver;
     };
 }
