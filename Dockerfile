@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y build-essential \
 			      cmake \
 			      g++ \
 			      git \
+			      minizip \
 			      libminizip-dev \
 			      libminizip-ng-dev \
 			      xorg-dev \
@@ -21,7 +22,9 @@ RUN apt-get update && apt-get install -y build-essential \
 			      libtiff-dev \
 			      libpng++-dev \
 			      libimath-dev \
+			      libopencv-dev \
 			      ffmpeg \
+			      libyaml-cpp-dev \
 			      libavcodec-dev \
 			      libavformat-dev \
 			      libswscale-dev \
@@ -33,7 +36,9 @@ RUN apt-get update && apt-get install -y build-essential \
 
 # TODO:
 # yaml-cpp
-# opencv4
+
+# missing #include <ftk/Core/ObservableValue.h>
+
 
 
 # Add the pipx installation location:
