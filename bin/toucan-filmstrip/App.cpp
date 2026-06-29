@@ -44,7 +44,12 @@ namespace toucan
         out->_init(context, argv);
         return out;
     }
-    
+
+    int App::getExit() const
+    {
+        return 0; // TODO stub for now to replace deprecated API of feather-tk IApp.h.
+    }
+
     void App::run()
     {
         const std::filesystem::path parentPath = std::filesystem::path(getExeName()).parent_path();

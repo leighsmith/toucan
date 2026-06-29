@@ -30,7 +30,10 @@ namespace toucan
             const std::shared_ptr<ftk::Context>&,
             std::vector<std::string>&);
         
-        void run() override;
+         //! Get the exit code.
+         FTK_API int getExit() const;
+
+         void run();
     
     private:
         struct CmdLine
