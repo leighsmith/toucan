@@ -61,6 +61,8 @@ RUN git clone https://github.com/AcademySoftwareFoundation/openfx.git
 # TODO this doesn't build on arm64 Linux currently, can't find the architecture.
 RUN cd openfx; scripts/build-cmake.sh
 # TODO need to fully install this?
+RUN mkdir /usr/local/include/OpenFX
+RUN tar -C include -c -f - . | tar -C /usr/local/include/OpenFX -x -f -
 
 # RUN git clone https://github.com/OpenTimelineIO/toucan.git
 # RUN git clone https://github.com/leighsmith/toucan.git
