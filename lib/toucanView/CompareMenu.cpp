@@ -24,7 +24,7 @@ namespace toucan
 
         _actions["Compare/A"] = ftk::Action::create(
             "A",
-            KeyShortcut(ftk::Key::A, ftk::KeyModifier::Shift),
+            ftk::KeyShortcut(ftk::Key::A, ftk::KeyModifier::Shift),
             [this](bool)
             {
                 CompareOptions options = _filesModel->getCompareOptions();
@@ -35,7 +35,7 @@ namespace toucan
 
         _actions["Compare/B"] = ftk::Action::create(
             "B",
-            KeyShortcut(ftk::Key::B, ftk::KeyModifier::Shift),
+            ftk::KeyShortcut(ftk::Key::B, ftk::KeyModifier::Shift),
             [this](bool)
             {
                 CompareOptions options = _filesModel->getCompareOptions();
@@ -46,7 +46,7 @@ namespace toucan
 
         _actions["Compare/Split"] = ftk::Action::create(
             "Split",
-            KeyShortcut(ftk::Key::S, ftk::KeyModifier::Shift),
+            ftk::KeyShortcut(ftk::Key::S, ftk::KeyModifier::Shift),
             [this](bool)
             {
                 CompareOptions options = _filesModel->getCompareOptions();
@@ -57,7 +57,7 @@ namespace toucan
 
         _actions["Compare/Overlay"] = ftk::Action::create(
             "Overlay",
-            KeyShortcut(ftk::Key::E, ftk::KeyModifier::Shift),
+            ftk::KeyShortcut(ftk::Key::E, ftk::KeyModifier::Shift),
             [this](bool)
             {
                 CompareOptions options = _filesModel->getCompareOptions();
@@ -68,7 +68,7 @@ namespace toucan
 
         _actions["Compare/Horizontal"] = ftk::Action::create(
             "Horizontal",
-            KeyShortcut(ftk::Key::H, ftk::KeyModifier::Shift),
+            ftk::KeyShortcut(ftk::Key::H, ftk::KeyModifier::Shift),
             [this](bool)
             {
                 CompareOptions options = _filesModel->getCompareOptions();
@@ -79,7 +79,7 @@ namespace toucan
 
         _actions["Compare/Vertical"] = ftk::Action::create(
             "Vertical",
-            KeyShortcut(ftk::Key::V, ftk::KeyModifier::Shift),
+            ftk::KeyShortcut(ftk::Key::V, ftk::KeyModifier::Shift),
             [this](bool)
             {
                 CompareOptions options = _filesModel->getCompareOptions();
