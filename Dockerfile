@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y build-essential \
 			      g++ \
 			      git \
 			      minizip \
-			      libminizip-dev \
 			      libminizip-ng-dev \
 			      xorg-dev \
 			      libglu1-mesa-dev \
