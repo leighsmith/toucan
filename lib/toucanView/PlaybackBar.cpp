@@ -154,10 +154,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void PlaybackBar::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I PlaybackBar::getSizeHint() const
     {
-        IWidget::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void PlaybackBar::_timelineUpdate()

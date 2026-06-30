@@ -76,9 +76,8 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void WindowToolBar::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I WindowToolBar::getSizeHint() const
     {
-        IWidget::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 }

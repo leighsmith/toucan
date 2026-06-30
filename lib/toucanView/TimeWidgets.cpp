@@ -82,10 +82,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void FrameButtons::sizeHintEvent(const ftk::SizeHintEvent& value)
+    Size2I FrameButtons::getSizeHint() const
     {
-        IWidget::sizeHintEvent(value);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void PlaybackButtons::_init(
@@ -160,10 +159,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void PlaybackButtons::sizeHintEvent(const ftk::SizeHintEvent& value)
+    Size2I PlaybackButtons::getSizeHint() const
     {
-        IWidget::sizeHintEvent(value);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void PlaybackButtons::_playbackUpdate()
@@ -259,10 +257,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void TimeEdit::sizeHintEvent(const ftk::SizeHintEvent& value)
+    Size2I TimeEdit::getSizeHint() const
     {
-        IWidget::sizeHintEvent(value);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void TimeEdit::keyPressEvent(ftk::KeyEvent& event)
@@ -384,10 +381,9 @@ namespace toucan
         _label->setGeometry(value);
     }
 
-    void TimeLabel::sizeHintEvent(const ftk::SizeHintEvent& value)
+    Size2I TimeLabel::getSizeHint() const
     {
-        IWidget::sizeHintEvent(value);
-        _setSizeHint(_label->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void TimeLabel::_timeUpdate()

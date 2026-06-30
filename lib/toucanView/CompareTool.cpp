@@ -78,10 +78,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void CompareWidget::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I CompareWidget::getSizeHint() const
     {
-        IWidget::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void CompareTool::_init(
@@ -209,10 +208,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void CompareTool::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I CompareTool::getSizeHint() const
     {
-        IToolWidget::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void CompareTool::_widgetUpdate()

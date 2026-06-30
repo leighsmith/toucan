@@ -235,10 +235,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void MainWindow::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I MainWindow::getSizeHint() const
     {
-        ftk::Window::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void MainWindow::keyPressEvent(ftk::KeyEvent& event)

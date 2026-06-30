@@ -253,9 +253,8 @@ namespace toucan
         _scrollWidget->setGeometry(value);
     }
 
-    void GraphTool::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I GraphTool::getSizeHint() const
     {
-        IToolWidget::sizeHintEvent(event);
-        _setSizeHint(_scrollWidget->getSizeHint());
+        return _scrollWidget->getSizeHint();
     }
 }

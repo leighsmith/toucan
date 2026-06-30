@@ -91,10 +91,9 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void ExportWidget::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I ExportWidget::getSizeHint() const
     {
-        IWidget::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 
     void ExportWidget::_initSettings(
@@ -551,9 +550,8 @@ namespace toucan
         _scrollWidget->setGeometry(value);
     }
 
-    void ExportTool::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I ExportTool::getSizeHint() const
     {
-        IToolWidget::sizeHintEvent(event);
-        _setSizeHint(_scrollWidget->getSizeHint());
+        return _scrollWidget->getSizeHint();
     }
 }

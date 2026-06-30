@@ -43,7 +43,7 @@ namespace toucan
         void setBCallback(const std::function<void(bool)>&);
 
         void setGeometry(const ftk::Box2I&) override;
-        void sizeHintEvent(const ftk::SizeHintEvent&) override;
+        Size2I getSizeHint() const override;
 
     private:
         bool _current = false;
@@ -73,7 +73,7 @@ namespace toucan
             const std::shared_ptr<IWidget>& parent = nullptr);
 
         void setGeometry(const ftk::Box2I&) override;
-        void sizeHintEvent(const ftk::SizeHintEvent&) override;
+        Size2I CompareTool::getSizeHint() const override;
 
     private:
         void _widgetUpdate();

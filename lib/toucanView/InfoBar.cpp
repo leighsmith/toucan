@@ -76,9 +76,8 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void InfoBar::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I InfoBar::getSizeHint() const
     {
-        IWidget::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 }

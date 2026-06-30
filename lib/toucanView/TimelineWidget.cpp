@@ -216,9 +216,9 @@ namespace toucan
         }
     }
 
-    void TimelineWidget::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I TimelineWidget::getSizeHint() const
     {
-        _setSizeHint(_scrollWidget->getSizeHint());
+        return _scrollWidget->getSizeHint();
     }
 
     void TimelineWidget::mouseMoveEvent(ftk::MouseMoveEvent& event)

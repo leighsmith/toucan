@@ -51,9 +51,8 @@ namespace toucan
         _hudWidget->setGeometry(value);
     }
 
-    void FileTab::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I FileTab::getSizeHint() const
     {
-        ftk::IWidget::sizeHintEvent(event);
-        _setSizeHint(_viewport->getSizeHint());
+        return _viewport->getSizeHint();
     }
 }

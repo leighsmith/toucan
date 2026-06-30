@@ -45,7 +45,7 @@ namespace toucan
             const ftk::Size2I&);
 
         void setGeometry(const ftk::Box2I&) override;
-        void sizeHintEvent(const ftk::SizeHintEvent&) override;
+        Size2I getSizeHint() const override;
         void keyPressEvent(ftk::KeyEvent&) override;
         void keyReleaseEvent(ftk::KeyEvent&) override;
 

@@ -36,7 +36,7 @@ namespace toucan
             const std::shared_ptr<IWidget>& parent = nullptr);
 
         void setGeometry(const ftk::Box2I&) override;
-        void sizeHintEvent(const ftk::SizeHintEvent&) override;
+        Size2I getSizeHint() const override;
 
     private:
         void _widgetUpdate();

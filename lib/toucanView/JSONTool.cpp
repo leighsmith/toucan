@@ -81,10 +81,9 @@ namespace toucan
         _bellows->setGeometry(value);
     }
 
-    void JSONWidget::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I JSONWidget::getSizeHint() const
     {
-        IWidget::sizeHintEvent(event);
-        _setSizeHint(_bellows->getSizeHint());
+        return _bellows->getSizeHint();
     }
 
     void JSONWidget::_textUpdate()
@@ -238,9 +237,8 @@ namespace toucan
         _layout->setGeometry(value);
     }
 
-    void JSONTool::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I JSONTool::getSizeHint() const
     {
-        IToolWidget::sizeHintEvent(event);
-        _setSizeHint(_layout->getSizeHint());
+        return _layout->getSizeHint();
     }
 }

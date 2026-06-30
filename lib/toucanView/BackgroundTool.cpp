@@ -125,10 +125,9 @@ namespace toucan
         _scrollWidget->setGeometry(value);
     }
 
-    void BackgroundTool::sizeHintEvent(const ftk::SizeHintEvent& event)
+    Size2I BackgroundTool::getSizeHint() const
     {
-        IToolWidget::sizeHintEvent(event);
-        _setSizeHint(_scrollWidget->getSizeHint());
+        return _scrollWidget->getSizeHint();
     }
 
     void BackgroundTool::_widgetUpdate()

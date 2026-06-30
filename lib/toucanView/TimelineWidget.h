@@ -56,7 +56,7 @@ namespace toucan
         void frameView();
 
         void setGeometry(const ftk::Box2I&) override;
-        void sizeHintEvent(const ftk::SizeHintEvent&) override;
+        Size2I getSizeHint() const override;
         void mouseMoveEvent(ftk::MouseMoveEvent&) override;
         void mousePressEvent(ftk::MouseClickEvent&) override;
         void mouseReleaseEvent(ftk::MouseClickEvent&) override;
