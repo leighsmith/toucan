@@ -38,10 +38,10 @@ RUN mkdir feather-tk
 RUN cd feather-tk; git clone https://github.com/grizzlypeak3d/feather-tk.git
 # We revert feather-tk to the last date matching version to the current toucan main branch date.
 # This is only needed until the toucan codebase and feather-tk library are synchronised in their APIs.
-RUN cd feather-tk; git checkout 3cee68ec
+RUN cd feather-tk/feather-tk; git checkout 3cee68ec
 RUN cd feather-tk; sh feather-tk/sbuild-linux.sh feather-tk
 # TODO replace with cmake --target install 
-RUN tar -C feather-tk/install-Release -c -f - . | tar -C /usr/local -x -f -
+RUN tar -C feather-tk/install-feather-tk -c -f - . | tar -C /usr/local -x -f -
 
 # Add the pipx installation location:
 ENV PATH=/root/.local/share/pipx/venvs/conan/bin:$PATH
