@@ -25,14 +25,8 @@ RUN apt-get update && apt-get install -y build-essential \
 			      libpng++-dev \
 			      libimath-dev \
 			      libopencv-dev \
-			      ffmpeg \
 			      libyaml-cpp-dev \
-			      libavcodec-dev \
-			      libavformat-dev \
-			      libswscale-dev \
-			      openimageio-tools \
 			      libopenexr-dev \
-			      libopenimageio-dev \
 			      libopencolorio-dev \
 			      libopentimelineio-dev
 
@@ -48,6 +42,7 @@ RUN tar -C feather-tk/install-feather-tk -c -f - . | tar -C /usr/local -x -f -
 
 # Add the pipx installation location:
 ENV PATH=/root/.local/share/pipx/venvs/conan/bin:$PATH
+# ENV CMAKE_INCLUDE_PATH=/usr/include/minizip-ng
 
 # We need conan for openFX building.
 RUN pipx ensurepath
