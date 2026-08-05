@@ -9,8 +9,6 @@ RUN apt-get update && apt-get install -y build-essential \
 			      cmake \
 			      g++ \
 			      git \
-			      minizip \
-			      libminizip-ng-dev \
 			      xorg-dev \
 			      cimg-dev \
 			      pkg-config \
@@ -25,8 +23,6 @@ RUN apt-get update && apt-get install -y build-essential \
 			      libpng++-dev \
 			      libimath-dev \
 			      libopencv-dev \
-			      libyaml-cpp-dev \
-			      libopenexr-dev \
 			      libopencolorio-dev \
 			      libopentimelineio-dev
 
