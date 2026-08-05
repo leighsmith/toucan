@@ -51,7 +51,7 @@ RUN git clone https://github.com/AcademySoftwareFoundation/openfx.git
 # Must turn off the plugins building with BUILD_EXAMPLE_PLUGINS=FALSE to avoid issues from cmake being unable to find OpenGL and CImg.
 # Also, remove `--target install` from cmake because the generated Makefile doesn't have an install rule, for some reason?
 # TODO this doesn't build on arm64 Linux currently, can't find the architecture.
-RUN cd openfx; scripts/build-cmake.sh -v Release -DBUILD_EXAMPLE_PLUGINS=FALSE -DPLUGIN_INSTALLDIR=./build/Install
+# RUN cd openfx; scripts/build-cmake.sh -v Release -DBUILD_EXAMPLE_PLUGINS=FALSE -DPLUGIN_INSTALLDIR=./build/Install
 # TODO need to find a better installation method, cmake --target install
 RUN mkdir /usr/local/include/OpenFX
 RUN tar -C openfx/include -c -f - . | tar -C /usr/local/include/OpenFX -x -f -
