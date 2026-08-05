@@ -60,4 +60,7 @@ RUN tar -C openfx/include -c -f - . | tar -C /usr/local/include/OpenFX -x -f -
 # RUN git clone https://github.com/leighsmith/toucan.git
 COPY . /home/ubuntu/toucan
 
-# RUN sh toucan/sbuild-linux.sh
+# Build the toucan CLI tools.
+RUN sh toucan/sbuild-linux.sh
+
+# TODO Install the tools & libraries into a clean container.
