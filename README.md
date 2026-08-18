@@ -138,13 +138,16 @@ Dependencies:
 
 Install system packages (Debian based systems):
 ```
-sudo apt-get install xorg-dev libglu1-mesa-dev mesa-common-dev mesa-utils
+sudo apt-get install xorg-dev libglu1-mesa-dev mesa-common-dev mesa-utils libva-dev
 ```
 
 Install system packages (Rocky 9):
 ```
-sudo dnf install libX11-devel libXrandr-devel libXinerama-devel libXcursor-devel libXi-devel mesa-libGL-devel
+sudo dnf install libX11-devel libXrandr-devel libXinerama-devel libXcursor-devel libXi-devel mesa-libGL-devel libva-devel
 ```
+
+`libva-dev`/`libva-devel` is required for FFmpeg's VAAPI decode-side hardware
+acceleration, which is enabled by default on Linux builds.
 
 Clone the repository:
 ```

@@ -74,6 +74,13 @@ namespace toucan
             AVPixelFormat _avOutputPixelFormat = AV_PIX_FMT_NONE;
             SwsContext* _swsContext = nullptr;
             bool _eof = false;
+
+            // Decode-side hardware acceleration (VAAPI on Linux). If the
+            // hardware device cannot be created, decoding falls back to
+            // software with these left null.
+            static AVPixelFormat _getFormat(AVCodecContext*, const AVPixelFormat*);
+            AVBufferRef* _avHwDeviceContext = nullptr;
+            AVFrame* _avFrameHw = nullptr;
         };
     }
 }

@@ -10,6 +10,7 @@
 
 extern "C"
 {
+#include <libavutil/hwcontext.h>
 #include <libavutil/imgutils.h>
 #include <libavutil/opt.h>
 }
@@ -179,6 +180,23 @@ namespace toucan
                 avcodec_parameters_to_context(_avCodecContext[_avStream], _avCodecParameters[_avStream]);
                 _avCodecContext[_avStream]->thread_count = 0;
                 _avCodecContext[_avStream]->thread_type = FF_THREAD_FRAME;
+
+                // Try to set up VAAPI decode-side hardware acceleration. If
+                // no hardware device is available (e.g. no GPU/driver, or
+                // VAAPI wasn't built into this FFmpeg), this simply fails
+                // and decoding proceeds in software as before.
+                if (av_hwdevice_ctx_create(&_avHwDeviceContext, AV_HWDEVICE_TYPE_VAAPI, nullptr, nullptr, 0) >= 0)
+                {
+                    _avCodecContext[_avStream]->hw_device_ctx = av_buffer_ref(_avHwDeviceContext);
+                    _avCodecContext[_avStream]->opaque = this;
+                    _avCodecContext[_avStream]->get_format = _getFormat;
+                    std::cout << "Hardware acceleration: VAAPI (" << path.string() << ")" << std::endl;
+                }
+                else
+                {
+                    std::cout << "Hardware acceleration: none, using software decoding (" << path.string() << ")" << std::endl;
+                }
+
                 r = avcodec_open2(_avCodecContext[_avStream], avVideoCodec, 0);
                 if (r < 0)
                 {
@@ -330,6 +348,11 @@ namespace toucan
                 {
                     throw std::runtime_error("Cannot allocate frame");
                 }
+                _avFrameHw = av_frame_alloc();
+                if (!_avFrameHw)
+                {
+                    throw std::runtime_error("Cannot allocate frame");
+                }
                 //! \bug These fields need to be filled out for
                 //! sws_scale_frame()?
                 _avFrame2->format = _avOutputPixelFormat;
@@ -400,6 +423,10 @@ namespace toucan
             {
                 sws_freeContext(_swsContext);
             }
+            if (_avFrameHw)
+            {
+                av_frame_free(&_avFrameHw);
+            }
             if (_avFrame2)
             {
                 av_frame_free(&_avFrame2);
@@ -407,6 +434,10 @@ namespace toucan
             if (_avFrame)
             {
                 av_frame_free(&_avFrame);
+            }
+            if (_avHwDeviceContext)
+            {
+                av_buffer_unref(&_avHwDeviceContext);
             }
             for (auto i : _avCodecContext)
             {
@@ -530,6 +561,32 @@ namespace toucan
                             {
                                 out = OIIO::ImageBuf(_spec);
 
+                                AVFrame* decodedFrame = _avFrame;
+                                if (AV_PIX_FMT_VAAPI == _avFrame->format)
+                                {
+                                    // Transfer the hardware surface back to
+                                    // system memory before scaling.
+                                    av_frame_unref(_avFrameHw);
+                                    if (av_hwframe_transfer_data(_avFrameHw, _avFrame, 0) < 0)
+                                    {
+                                        throw std::runtime_error("Cannot transfer hardware frame");
+                                    }
+                                    decodedFrame = _avFrameHw;
+                                }
+                                if (decodedFrame->format != _avInputPixelFormat)
+                                {
+                                    // The hardware transfer surface format
+                                    // (e.g. NV12) can differ from the
+                                    // pixel format assumed when the sws
+                                    // context was created - reconfigure it
+                                    // to match.
+                                    _avInputPixelFormat = static_cast<AVPixelFormat>(decodedFrame->format);
+                                    av_opt_set_int(_swsContext, "srcw", decodedFrame->width, AV_OPT_SEARCH_CHILDREN);
+                                    av_opt_set_int(_swsContext, "srch", decodedFrame->height, AV_OPT_SEARCH_CHILDREN);
+                                    av_opt_set_int(_swsContext, "src_format", _avInputPixelFormat, AV_OPT_SEARCH_CHILDREN);
+                                    sws_init_context(_swsContext, nullptr, nullptr);
+                                }
+
                                 av_image_fill_arrays(
                                     _avFrame2->data,
                                     _avFrame2->linesize,
@@ -538,7 +595,7 @@ namespace toucan
                                     _spec.width,
                                     _spec.height,
                                     1);
-                                sws_scale_frame(_swsContext, _avFrame2, _avFrame);
+                                sws_scale_frame(_swsContext, _avFrame2, decodedFrame);
 
                                 _currentTime = frameTime + OTIO_NS::RationalTime(1.0, _timeRange.duration().rate());
 
@@ -576,6 +633,22 @@ namespace toucan
                 }
             }
             return out;
+        }
+
+        AVPixelFormat Read::_getFormat(AVCodecContext* avCodecContext, const AVPixelFormat* pixFmts)
+        {
+            Read* self = static_cast<Read*>(avCodecContext->opaque);
+            if (self && self->_avHwDeviceContext)
+            {
+                for (const AVPixelFormat* p = pixFmts; AV_PIX_FMT_NONE != *p; ++p)
+                {
+                    if (AV_PIX_FMT_VAAPI == *p)
+                    {
+                        return *p;
+                    }
+                }
+            }
+            return avcodec_default_get_format(avCodecContext, pixFmts);
         }
 
         Read::AVIOBufferData::AVIOBufferData()

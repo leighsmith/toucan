@@ -56,7 +56,6 @@ endif()
 set(FFmpeg_CONFIGURE_ARGS
     --prefix=${CMAKE_INSTALL_PREFIX}
     --disable-doc
-    --disable-hwaccels
     --disable-devices
     --disable-alsa
     --disable-appkit
@@ -89,7 +88,6 @@ set(FFmpeg_CONFIGURE_ARGS
     --disable-nvdec
     --disable-nvenc
     --disable-v4l2-m2m
-    --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
     --enable-pic
@@ -97,6 +95,20 @@ set(FFmpeg_CONFIGURE_ARGS
     ${FFmpeg_CXXFLAGS}
     ${FFmpeg_OBJCFLAGS}
     ${FFmpeg_LDFLAGS})
+if(WIN32 OR APPLE)
+    # \todo Enable decode-side hardware acceleration (VideoToolbox on macOS,
+    # D3D11VA/DXVA2 on Windows) here once it has been implemented and tested
+    # on those platforms.
+    list(APPEND FFmpeg_CONFIGURE_ARGS
+        --disable-hwaccels
+        --disable-vaapi)
+else()
+    # Linux: enable VAAPI decode-side hardware acceleration. This requires
+    # the libva development headers to be installed on the build machine
+    # (e.g. "libva-dev" on Debian/Ubuntu, "libva-devel" on Rocky/Fedora).
+    list(APPEND FFmpeg_CONFIGURE_ARGS
+        --enable-vaapi)
+endif()
 if(toucan_FFmpeg_MINIMAL)
     list(APPEND FFmpeg_CONFIGURE_ARGS
         --disable-decoders
