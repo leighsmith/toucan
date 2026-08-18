@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y build-essential \
 			      mesa-common-dev \
 			      mesa-utils \
 			      curl \
-			      pipx \
+			      libva-dev \
 			      libjpeg-dev \
 			      libtiff-dev \
 			      libpng++-dev \
@@ -38,12 +38,6 @@ RUN tar -C feather-tk/install-feather-tk -c -f - . | tar -C /usr/local -x -f -
 
 # Add the pipx installation location:
 ENV PATH=/root/.local/share/pipx/venvs/conan/bin:$PATH
-# ENV CMAKE_INCLUDE_PATH=/usr/include/minizip-ng
-
-# We need conan for openFX building.
-RUN pipx ensurepath
-RUN pipx install conan
-RUN conan profile detect
 
 # TODO Unable to get the release because of github blocking automation.
 # curl -O https://github.com/AcademySoftwareFoundation/openfx/releases/download/OFX_Release_1.5.1/openfx-linux-ubuntu-1.5.1.tar.gz
@@ -63,4 +57,34 @@ COPY . /home/ubuntu/toucan
 # Build the toucan CLI tools.
 RUN sh toucan/sbuild-linux.sh
 
-# TODO Install the tools & libraries into a clean container.
+# Don't use the sbuild-linux.sh, install directly into /usr/local on the container.
+# RUN cmake \
+#     -S toucan/cmake/SuperBuild \
+#     -B sbuild-Release \
+#     -DCMAKE_INSTALL_PREFIX=/usr/local \
+#     -DCMAKE_PREFIX_PATH=/usr/local \
+#     -DCMAKE_BUILD_TYPE=Release \
+#     -Dtoucan_FFmpeg_MINIMAL=OFF
+# RUN cmake --build sbuild-Release -j 4 --config Release
+
+# RUN cmake \
+#     -S toucan \
+#     -B build-Release \
+#     -DCMAKE_INSTALL_PREFIX=/usr/local \
+#     -DCMAKE_PREFIX_PATH=/usr/local \
+#     -DCMAKE_BUILD_TYPE=Release
+# RUN cmake --build build-Release -j 4 --config Release
+# RUN cmake --build build-Release --config Release --target install
+
+# Install the tools & libraries into a clean container.
+#FROM ubuntu:latest
+
+# Copy just the libraries and resources needed to operate the CLI tools.
+#COPY --from=builder /usr/lib/aarch64-linux-gnu/ /usr/lib/aarch64-linux-gnu/
+#COPY --from=builder /usr/local/ /usr/local/
+#COPY --from=builder /home/ubuntu/install-Release/ /usr/local/
+# RUN tar -C install-Release -c -f - . | tar -C /usr/local/ -x -f -
+
+# Define the locations to search for libraries to include local libraries.
+#ENV LD_LIBRARY_PATH=/usr/local/lib
+#WORKDIR /home/ubuntu
