@@ -57,7 +57,7 @@ COPY . /home/ubuntu/toucan
 # Build the toucan CLI tools.
 RUN sh toucan/sbuild-linux.sh
 
-# Don't use the sbuild-linux.sh, install directly into /usr/local on the container.
+# TODO Don't use the sbuild-linux.sh, install directly into /usr/local on the container.
 # RUN cmake \
 #     -S toucan/cmake/SuperBuild \
 #     -B sbuild-Release \
@@ -77,14 +77,19 @@ RUN sh toucan/sbuild-linux.sh
 # RUN cmake --build build-Release --config Release --target install
 
 # Install the tools & libraries into a clean container.
-#FROM ubuntu:latest
+FROM ubuntu:latest
 
 # Copy just the libraries and resources needed to operate the CLI tools.
-#COPY --from=builder /usr/lib/aarch64-linux-gnu/ /usr/lib/aarch64-linux-gnu/
-#COPY --from=builder /usr/local/ /usr/local/
-#COPY --from=builder /home/ubuntu/install-Release/ /usr/local/
-# RUN tar -C install-Release -c -f - . | tar -C /usr/local/ -x -f -
+COPY --from=builder /usr/lib/aarch64-linux-gnu/ /usr/lib/aarch64-linux-gnu/
+COPY --from=builder /usr/local/ /usr/local/
+COPY --from=builder /home/ubuntu/install-Release/ /usr/local/
 
 # Define the locations to search for libraries to include local libraries.
-#ENV LD_LIBRARY_PATH=/usr/local/lib
-#WORKDIR /home/ubuntu
+ENV LD_LIBRARY_PATH=/usr/local/lib
+WORKDIR /home/ubuntu
+
+# TODO for some reason, running toucan-render from the command line, using PATH to find
+# it, without an absolute path causes the tool to hang, while running it as
+# /usr/local/bin/toucan-render properly runs. It seems that argv[0] is used, and an
+# unspecified path then causes the command to hang. The current work-around is to simply
+# run it with the full path specified.
