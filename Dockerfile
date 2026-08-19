@@ -80,7 +80,8 @@ RUN sh toucan/sbuild-linux.sh
 FROM ubuntu:latest
 
 # Copy just the libraries and resources needed to operate the CLI tools.
-COPY --from=builder /usr/lib/aarch64-linux-gnu/ /usr/lib/aarch64-linux-gnu/
+#COPY --from=builder /usr/lib/aarch64-linux-gnu/ /usr/lib/aarch64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu
 COPY --from=builder /usr/local/ /usr/local/
 COPY --from=builder /home/ubuntu/install-Release/ /usr/local/
 
